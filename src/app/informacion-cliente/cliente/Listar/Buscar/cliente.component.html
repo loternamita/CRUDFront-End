@@ -1,0 +1,50 @@
+<form class="was-validated">
+  <div class="container" aria-hidden="true">
+
+    <br>
+
+    <tr>
+      <td>
+        <div class="mb-3">
+          <label class="form-label">Tipo Documento:</label>
+          <select name="miselect" class="form-select is-invalid" [(ngModel)]="seleccionadoHtml"
+            [ngModelOptions]="{standalone: true}" aria-label="Default select example">
+            <option selected disabled value="">Seleccione un documento</option>
+            <option [value]="item" *ngFor="let item of lista">{{item}}</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div class="mb-3">
+          <label class="form-label">Numero Documento:</label>
+          <input type="text" [(ngModel)]="numberDniHtml" [ngModelOptions]="{standalone: true}"
+            placeholder="Digite su numero de documento" class="form-control is-invalid" required>
+          <div *ngIf="numberDniHtml.length < 8 || numberDniHtml.length > 11" class="invalid-feedback">
+            El campo numero de documento debe tener entre 8 caracteres y 11 caracteres.
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <hr>
+        <ng-container
+          *ngIf="seleccionadoHtml === '' || numberDniHtml === '' || numberDniHtml.length < 8 || numberDniHtml.length > 11 ; else elseTemplate">
+          <button type="button" class="btn btn-primary btn-lg" value="Buscar" [disabled]="true">Buscar</button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button type="button" id="validateButton" class="btn btn-primary btn-lg"
+            (click)="findByNumberAndTypeC(seleccionadoHtml,numberDniHtml)" value="Buscar">Buscar</button>
+        </ng-template>
+      </td>
+    </tr>
+  </div>
+
+  <div *ngIf="componentInfoPadre != null">
+    <app-cliente-info [infoCliente]="componentInfoPadre"></app-cliente-info>
+  </div>
+</form>

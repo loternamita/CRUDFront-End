@@ -1,0 +1,90 @@
+<div class="container" aria-hidden="true">
+  <table>
+
+    <tr>
+      <td>
+        <hr> Tipo de documento: <select name="miselect" [(ngModel)]="seleccionadoHtml"
+          [ngModelOptions]="{standalone: true}">
+          <option [value]=" item" *ngFor="let item of lista">{{item}}</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <hr> Numero de documento: <input type="text" [(ngModel)]="numberDniHtml" [ngModelOptions]="{standalone: true}"
+          placeholder="Digite su numero de documento">
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
+      <td>
+        primerNombre: <input type="text" [(ngModel)]="clienteUpdate.primerNombre">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        segundoNombre: <input type="text" [(ngModel)]="clienteUpdate.segundoNombre">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        primerApellido: <input type="text" [(ngModel)]="clienteUpdate.primerApellido">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        segundoApellido: <input type="text" [(ngModel)]="clienteUpdate.segundoApellido">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        telefono: <input type="text" [(ngModel)]="clienteUpdate.telefono">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        direccion: <input type="text" [(ngModel)]="clienteUpdate.direccion">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ciudadResidencia: <input type="text" [(ngModel)]="clienteUpdate.ciudadResidencia">
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>
+        <hr> <input type="button" (click)="actualizarCliente()" value="Actualizar Cliente" />
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+
+      <td *ngIf="modalMostrar == true">
+        <ng-container *ngIf="validate; else elseTemplate">
+          Estado : {{ this.clienteInterface?.code }} - {{ this.clienteInterface?.messageCode }}
+        </ng-container>
+        <ng-template #elseTemplate>
+          Estado : 404 - No se encontro el cliente {{ numberDniHtml }}
+        </ng-template>
+      </td>
+
+
+    </tr>
+  </table>
+</div>
